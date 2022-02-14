@@ -1,6 +1,6 @@
 <template>
 	<div>
-        <Loader v-if="isLoading"/>
+		<Loader v-if="isLoading" />
 		<ul v-else>
 			<li v-for="product in products" :key="product.id">
 				<h4>
@@ -21,9 +21,9 @@ import Loader from "./Loader.vue";
 
 export default {
 	name: "Products",
-    components: {
-        Loader,
-    },
+	components: {
+		Loader,
+	},
 	props: ["products", "isLoading"],
 };
 </script>

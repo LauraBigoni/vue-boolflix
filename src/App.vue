@@ -1,6 +1,6 @@
 <template>
 	<div id="app">
-		<Header />
+		<Header :products="products" />
 		<main>
 			<Products :products="products" isLoading="isLoading" />
 		</main>
