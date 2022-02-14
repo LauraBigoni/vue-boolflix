@@ -1,5 +1,10 @@
 <template>
-	<div></div>
+	<div>
+        <h3 v-if="true">Cerca qualcosa...</h3>
+        <ul v-else>
+            <li></li>
+        </ul>
+    </div>
 </template>
 
 <script>
