@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- <Loader /> -->
-		<ul >
+		<ol>
 			<li v-for="product in products" :key="product.id">
 				<h4>
 					Titolo: {{ product.title }} <br />
@@ -12,7 +12,19 @@
 					Voto: {{ product.vote_average }}
 				</p>
 			</li>
-		</ul>
+		</ol>
+		<ol>
+			<li v-for="product in products" :key="product.id">
+				<h4>
+					Titolo: {{ product.name }} <br />
+					Titolo originale: {{ product.original_name }}
+				</h4>
+				<p>
+					Lingua: {{ product.origin_country }} <br />
+					Voto: {{ product.vote_average }}
+				</p>
+			</li>
+		</ol>
 	</div>
 </template>
 

@@ -2,7 +2,7 @@
 	<div id="app">
 		<Header @fetch-products="showProducts" />
 		<main>
-			<Products :isLoading="isLoading" />
+			<Products :products="products" isLoading="isLoading" />
 		</main>
 	</div>
 </template>

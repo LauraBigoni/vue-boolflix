@@ -29,7 +29,15 @@ export default {
 				},
 			};
 			this.isLoading = true;
+
+            // # Prendo i film
 			axios.get(`${url}/search/movie?`, config).then((res) => {
+				this.$emit('fetch-products', res.data.results);
+				this.isLoading = false;
+			});
+
+            // # Prendo le serie TV
+            axios.get(`${url}/search/tv?`, config).then((res) => {
 				this.$emit('fetch-products', res.data.results);
 				this.isLoading = false;
 			});
