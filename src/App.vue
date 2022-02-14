@@ -2,7 +2,7 @@
 	<div id="app">
 		<Header />
 		<main>
-			<Products />
+			<Products :products="products" />
 		</main>
 	</div>
 </template>
