@@ -7,14 +7,23 @@
 				Lingua:
 				<img
 					v-if="countries.includes(item.original_language)"
-					:src="giveFlag"
+					:src="setFlag"
 					:alt="item.title"
 				/>
 				<span v-else>{{ item.original_language }}</span>
 			</li>
-			<li>Voto: {{ item.vote_average }}</li>
-			<li><img :src="givePoster" :alt="item.id" /></li>
-			<li></li>
+			<li>
+				<img v-if="item.poster_path" :src="setPoster" :alt="item.title" />
+				<img v-else :src="setAlternativePoster" :alt="item.title" />
+			</li>
+			<li id="stars">
+				<i
+					v-for="i in 5"
+					:key="i"
+					class="fa-star"
+					:class="i <= setStar ? 'fa-solid' : 'fa-regular'"
+				></i>
+			</li>
 		</ul>
 	</div>
 </template>
@@ -27,16 +36,24 @@ export default {
 	data() {
 		return {
 			countries: ["it", "en"],
-			baseUri: "http://image.tmdb.org/t/p/w342/",
+			baseUri: "http://image.tmdb.org/t/p/w342",
+			vote: this.item.vote_average,
 		};
 	},
 	computed: {
-		giveFlag() {
+		setFlag() {
 			return require(`@/assets/img/${this.item.original_language}.png`);
 		},
-		givePoster() {
+		setPoster() {
 			let imgPath = `${this.baseUri}${this.item.poster_path}`;
 			return imgPath;
+		},
+		setAlternativePoster() {
+			return require(`@/assets/img/no-image.png`);
+		},
+		setStar() {
+			let stars = Math.ceil(this.vote / 2);
+			return stars;
 		},
 	},
 };
