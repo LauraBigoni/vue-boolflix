@@ -1,7 +1,12 @@
 <template>
 	<div>
-		<input v-model="search" type="text" @keyup.enter="getProducts(url)" placeholder="Cerca un film o una serie tv"/>
-		<button type="button" @click="getProducts(url)">Search</button>
+		<input
+			v-model="search"
+			type="text"
+			@keyup.enter="getProducts()"
+			:placeholder="placeholder || 'Cerca qualcosa..'"
+		/>
+		<button type="button" @click="getProducts()">Search</button>
 	</div>
 </template>
 
@@ -10,7 +15,7 @@ import axios from "axios";
 
 export default {
 	name: "Header",
-    props: ['products'],
+	props: [ "placeholder"],
 	data() {
 		return {
 			search: "",
@@ -20,7 +25,17 @@ export default {
 		};
 	},
 	methods: {
-		getProducts(url) {
+		fetchApi(endpoint, config, target) {
+			axios
+				.get(`${this.url}/${endpoint}`, config)
+				.then((res) => {
+					this.$emit(`fetch-${target}`, res.data.results, target);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		},
+		getProducts() {
 			const config = {
 				params: {
 					api_key: this.api_key,
@@ -28,19 +43,8 @@ export default {
 					language: "it-IT",
 				},
 			};
-			this.isLoading = true;
-
-            // # Prendo i film
-			axios.get(`${url}/search/movie?`, config).then((res) => {
-				this.$emit('fetch-products', res.data.results);
-				this.isLoading = false;
-			});
-
-            // # Prendo le serie TV
-            axios.get(`${url}/search/tv?`, config).then((res) => {
-				this.$emit('fetch-products', res.data.results);
-				this.isLoading = false;
-			});
+			this.fetchApi("search/movie", config, "products");
+			this.fetchApi("search/tv", config, "series");
 		},
 	},
 };
