@@ -6,17 +6,39 @@
 			@fetch-series="showProducts"
 		/>
 		<main>
-			<div v-if="products.length && series.length">
-				<section id="movies">
-					<h2>Movies</h2>
-					<Product v-for="movie in products" :key="movie.id" :item="movie" />
-				</section>
-				<section id="series">
-					<h2>Series</h2>
-					<Product v-for="serie in series" :key="serie.id" :item="serie" />
-				</section>
+			<div class="container">
+				<div class="row">
+					<div class="col d-flex flex-wrap justify-content-center">
+						<div v-if="products.length && series.length">
+							<h2 class="text-center pb-5">Movies</h2>
+							<section
+								id="movies"
+								class="d-flex flex-wrap justify-content-around"
+							>
+								<Product
+									class="p-1"
+									v-for="movie in products"
+									:key="movie.id"
+									:item="movie"
+								/>
+							</section>
+							<h2 class="text-center pb-5">Series</h2>
+							<section
+								id="series"
+								class="d-flex flex-wrap justify-content-around"
+							>
+								<Product
+									class="p-1"
+									v-for="serie in series"
+									:key="serie.id"
+									:item="serie"
+								/>
+							</section>
+						</div>
+						<h3 v-else class="h1">Cerca qualcosa...</h3>
+					</div>
+				</div>
 			</div>
-			<h3 v-else>Cerca qualcosa...</h3>
 		</main>
 	</div>
 </template>
@@ -52,9 +74,41 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~bootstrap/dist/css/bootstrap.css';
+@import "~bootstrap/dist/css/bootstrap.css";
 $main_font: "Segoe UI", "Open Sans", Helvetica, sans-serif;
-body {
+/* Generics */
+::-webkit-scrollbar {
+	width: 5px;
+	height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: rgb(194, 0, 0);
+	border-radius: 10px;
+}
+
+main {
 	font-family: $main_font;
+	background-color: rgb(71, 71, 71);
+	padding-top: 50px;
+	height: calc(100vh - 100px);
+	overflow-y: scroll;
+	color: white;
+
+	.language img {
+		height: auto;
+		width: 40px;
+	}
+
+	.poster img {
+		height: 450px;
+		width: 300px;
+		border-radius: 10px;
+		border: 2px solid white;
+	}
+
+	li {
+		width: 300px;
+	}
 }
 </style>

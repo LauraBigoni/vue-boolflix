@@ -1,31 +1,29 @@
 <template>
-	<div>
-		<ul>
-			<li>Titolo: {{ item.title || item.name }}</li>
-			<li>Titolo originale: {{ item.original_title || item.original_name }}</li>
-			<li>
-				Lingua:
-				<img
-					v-if="countries.includes(item.original_language)"
-					:src="setFlag"
-					:alt="item.title"
-				/>
-				<span v-else>{{ item.original_language }}</span>
-			</li>
-			<li>
-				<img v-if="item.poster_path" :src="setPoster" :alt="item.title" />
-				<img v-else :src="setAlternativePoster" :alt="item.title" />
-			</li>
-			<li id="stars">
-				<i
-					v-for="i in 5"
-					:key="i"
-					class="fa-star"
-					:class="i <= setStar ? 'fa-solid' : 'fa-regular'"
-				></i>
-			</li>
-		</ul>
-	</div>
+	<ul class="list-unstyled d-flex flex-column">
+		<li>Titolo: {{ item.title || item.name }}</li>
+		<li>Titolo originale: {{ item.original_title || item.original_name }}</li>
+		<li class="language">
+			Lingua:
+			<img
+				v-if="countries.includes(item.original_language)"
+				:src="setFlag"
+				:alt="item.title"
+			/>
+			<span v-else>{{ item.original_language }}</span>
+		</li>
+		<li class="poster">
+			<img v-if="item.poster_path" :src="setPoster" :alt="item.title" />
+			<img v-else :src="setAlternativePoster" :alt="item.title" />
+		</li>
+		<li id="stars">
+			<i
+				v-for="i in 5"
+				:key="i"
+				class="fa-star"
+				:class="i <= setStar ? 'fa-solid' : 'fa-regular'"
+			></i>
+		</li>
+	</ul>
 </template>
 
 <script>
@@ -60,5 +58,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.fa-star {
+	color: rgb(236, 201, 41);
+}
 </style>
