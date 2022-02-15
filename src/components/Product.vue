@@ -1,21 +1,25 @@
 <template>
-	<ul class="list-unstyled d-flex flex-column">
-		<li>Titolo: {{ item.title || item.name }}</li>
-		<li>Titolo originale: {{ item.original_title || item.original_name }}</li>
+	<ul class="list-unstyled d-flex flex-column text-center">
+		<li class="poster">
+			<img v-if="item.poster_path" :src="setPoster" :alt="item.title" />
+			<img v-else :src="setAlternativePoster" :alt="item.title" />
+		</li>
+		<li><strong>Titolo:</strong> {{ item.title || item.name }}</li>
+		<li>
+			<strong>Titolo originale:</strong>
+			{{ item.original_title || item.original_name }}
+		</li>
 		<li class="language">
-			Lingua:
+			Country:
 			<img
 				v-if="countries.includes(item.original_language)"
 				:src="setFlag"
 				:alt="item.title"
 			/>
-			<span v-else>{{ item.original_language }}</span>
-		</li>
-		<li class="poster">
-			<img v-if="item.poster_path" :src="setPoster" :alt="item.title" />
-			<img v-else :src="setAlternativePoster" :alt="item.title" />
+			<span v-else>{{ item.original_language.toUpperCase() }}</span>
 		</li>
 		<li id="stars">
+			<strong>Voto:</strong>
 			<i
 				v-for="i in 5"
 				:key="i"
@@ -23,6 +27,7 @@
 				:class="i <= setStar ? 'fa-solid' : 'fa-regular'"
 			></i>
 		</li>
+		<li>{{ item.overview || 'Nessuna descrizione disponibile...' }}</li>
 	</ul>
 </template>
 

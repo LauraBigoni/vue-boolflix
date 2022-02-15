@@ -10,7 +10,7 @@
 				<div class="row">
 					<div class="col d-flex flex-wrap justify-content-center">
 						<div v-if="products.length && series.length">
-							<h2 class="text-center pb-5">Movies</h2>
+							<h2 class="text-center py-4 fw-bold">Movies</h2>
 							<section
 								id="movies"
 								class="d-flex flex-wrap justify-content-around"
@@ -22,7 +22,7 @@
 									:item="movie"
 								/>
 							</section>
-							<h2 class="text-center pb-5">Series</h2>
+							<h2 class="text-center py-4 fw-bold">Series</h2>
 							<section
 								id="series"
 								class="d-flex flex-wrap justify-content-around"
@@ -35,7 +35,7 @@
 								/>
 							</section>
 						</div>
-						<h3 v-else class="h1">Cerca qualcosa...</h3>
+						<h3 v-else class="h1 fw-bold pt-4">Cerca qualcosa...</h3>
 					</div>
 				</div>
 			</div>
@@ -90,7 +90,6 @@ $main_font: "Segoe UI", "Open Sans", Helvetica, sans-serif;
 main {
 	font-family: $main_font;
 	background-color: rgb(71, 71, 71);
-	padding-top: 50px;
 	height: calc(100vh - 100px);
 	overflow-y: scroll;
 	color: white;
