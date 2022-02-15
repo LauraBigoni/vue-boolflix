@@ -33,7 +33,7 @@ export default {
 	},
 	data() {
 		return {
-			placeholder: "Cerca un film o una serie tv",
+			placeholder: "Cerca un film o una serie",
 			products: [],
 			series: [],
 		};
@@ -50,3 +50,11 @@ export default {
 	},
 };
 </script>
+
+<style lang="scss">
+@import '~bootstrap/dist/css/bootstrap.css';
+$main_font: "Segoe UI", "Open Sans", Helvetica, sans-serif;
+body {
+	font-family: $main_font;
+}
+</style>
