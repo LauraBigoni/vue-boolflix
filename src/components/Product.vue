@@ -1,16 +1,15 @@
 <template>
-	<ul class="list-unstyled d-flex flex-column text-center">
-		<li class="poster">
-			<img v-if="item.poster_path" :src="setPoster" :alt="item.title" />
-			<img v-else :src="setAlternativePoster" :alt="item.title" />
-		</li>
+	<ul
+		:style="bgStyle"
+		class="list-unstyled d-flex flex-column text-center align-items-center"
+	>
 		<li><strong>Titolo:</strong> {{ item.title || item.name }}</li>
 		<li>
 			<strong>Titolo originale:</strong>
 			{{ item.original_title || item.original_name }}
 		</li>
 		<li class="language">
-			Country:
+			Paese:
 			<img
 				v-if="countries.includes(item.original_language)"
 				:src="setFlag"
@@ -27,7 +26,7 @@
 				:class="i <= setStar ? 'fa-solid' : 'fa-regular'"
 			></i>
 		</li>
-		<li>{{ item.overview || 'Nessuna descrizione disponibile...' }}</li>
+		<li>{{ item.overview || "Nessuna descrizione disponibile..." }}</li>
 	</ul>
 </template>
 
@@ -58,6 +57,14 @@ export default {
 			let stars = Math.ceil(this.vote / 2);
 			return stars;
 		},
+		bgImage() {
+			return this.item.poster_path ? this.setPoster : this.setAlternativePoster;
+		},
+		bgStyle() {
+			return {
+				backgroundImage: `url(${this.bgImage})`,
+			};
+		},
 	},
 };
 </script>
@@ -65,5 +72,39 @@ export default {
 <style lang="scss" scoped>
 .fa-star {
 	color: rgb(236, 201, 41);
+}
+.language img {
+	height: auto;
+	width: 40px;
+}
+
+ul {
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+
+	height: 450px;
+	width: 300px;
+
+	border-radius: 5px;
+	border: 2px solid white;
+
+	overflow-y: scroll;
+}
+
+li {
+	display: none;
+	font-size: 16px;
+	width: 250px;
+	padding: 10px 0;
+}
+
+ul:hover li {
+	display: inline;
+}
+
+ul:hover {
+	background-image: none !important;
+	background-color: rgb(27, 27, 27);
 }
 </style>

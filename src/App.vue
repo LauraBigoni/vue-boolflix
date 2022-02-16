@@ -10,7 +10,7 @@
 				<div class="row">
 					<div class="col d-flex flex-wrap justify-content-center">
 						<div v-if="products.length && series.length">
-							<h2 class="text-center py-4 fw-bold">Movies</h2>
+							<h2 class="text-center py-4">Movies</h2>
 							<section
 								id="movies"
 								class="d-flex flex-wrap justify-content-around"
@@ -22,7 +22,7 @@
 									:item="movie"
 								/>
 							</section>
-							<h2 class="text-center py-4 fw-bold">Series</h2>
+							<h2 class="text-center py-4">Series</h2>
 							<section
 								id="series"
 								class="d-flex flex-wrap justify-content-around"
@@ -35,7 +35,7 @@
 								/>
 							</section>
 						</div>
-						<h3 v-else class="h1 fw-bold pt-4">Cerca qualcosa...</h3>
+						<h3 v-else class="h1 pt-4">Cerca qualcosa...</h3>
 					</div>
 				</div>
 			</div>
@@ -93,21 +93,5 @@ main {
 	height: calc(100vh - 100px);
 	overflow-y: scroll;
 	color: white;
-
-	.language img {
-		height: auto;
-		width: 40px;
-	}
-
-	.poster img {
-		height: 450px;
-		width: 300px;
-		border-radius: 10px;
-		border: 2px solid white;
-	}
-
-	li {
-		width: 300px;
-	}
 }
 </style>
