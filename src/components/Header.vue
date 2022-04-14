@@ -1,9 +1,6 @@
 <template>
 	<header class="row m-0">
-		<div class="col d-flex justify-content-between align-items-center px-4">
-			<div>
-				<h1>BOOLFLIX</h1>
-			</div>
+		<div class="col-12 d-flex justify-content-center align-items-end pb-5">
 			<div class="d-flex">
 				<input
 					type="text"
@@ -12,7 +9,13 @@
 					@keyup.enter="getProducts()"
 					:placeholder="placeholder || 'Cerca qualcosa..'"
 				/>
-				<button class="ms-2 btn btn-danger" type="button" @click="getProducts()">Search</button>
+				<button
+					class="ms-2 btn btn-danger"
+					type="button"
+					@click="getProducts()"
+				>
+					Search
+				</button>
 			</div>
 		</div>
 	</header>
@@ -53,7 +56,7 @@ export default {
 			};
 			this.fetchApi("search/movie", config, "products");
 			this.fetchApi("search/tv", config, "series");
-			this.search = '';
+			this.search = "";
 		},
 	},
 };
@@ -61,8 +64,11 @@ export default {
 
 <style lang="scss" scoped>
 header {
-	background-color: rgb(27, 27, 27);
-	height: 100px;
+	background-image: url("../assets/img/netflix-logo.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	height: 500px;
 
 	h1 {
 		color: rgb(194, 0, 0);
